@@ -1,0 +1,67 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-icon {
+  margin-right: 16px;
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+.action-icon:focus,
+.action-icon:focus-visible {
+  outline: none !important;
+}
+
+.action-icon:hover mat-icon {
+  transform: scale(1.2);
+}
+
+/* Remove striped backgrounds so table looks like overlay on page */
+tr.mat-row {
+  background: transparent;
+  border-bottom: 1px solid #e8e8e8;
+  transition: background-color 0.15s ease;
+}
+
+tr.mat-row:hover {
+  background-color: rgba(0,0,0,0.03);
+}
+
+.mat-row {
+  height: auto;
+  min-height: 48px;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+/* removed cell-border hover effect per user request */
+
+/* Header transparent to avoid two-tone look */
+tr.mat-header-row {
+  background: transparent;
+  font-weight: 600;
+}
+
+/* Keep elevation padding but transparent background */
+.mat-elevation-z8 {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  background: transparent;
+}
