@@ -10,7 +10,12 @@
 <div class="mat-elevation-z8">
 <mat-form-field appearance="standard">
   <mat-label>Filtro</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+  <input matInput 
+         (keyup)="applyFilter($event)" 
+         placeholder="Buscar por nombre, correo, teléfono..." 
+         aria-label="Filtrar empleados"
+         #input>
+  <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
@@ -52,17 +57,43 @@
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef> Acciones </th>
     <td mat-cell *matCellDef="let element; let i = index">
-      <a class="pointer action-icon" [routerLink]="['/edit', getIndex(i)]" matTooltip="Editar empleado" #editTooltip="matTooltip" (mouseenter)="showTempTooltip(editTooltip)">
+      <a class="pointer action-icon" 
+         [routerLink]="['/edit', getIndex(i)]" 
+         matTooltip="Editar empleado" 
+         #editTooltip="matTooltip" 
+         (mouseenter)="showTempTooltip(editTooltip)"
+         [attr.aria-label]="'Editar ' + element.nombreCompleto"
+         role="button"
+         tabindex="0">
         <mat-icon color="primary">edit</mat-icon>
       </a>
-      <a (click)="eliminarEmpleado(getIndex(i))" class="pointer action-icon" matTooltip="Eliminar empleado" #deleteTooltip="matTooltip" (mouseenter)="showTempTooltip(deleteTooltip)">
+      <a (click)="eliminarEmpleado(getIndex(i))" 
+         class="pointer action-icon" 
+         matTooltip="Eliminar empleado" 
+         #deleteTooltip="matTooltip" 
+         (mouseenter)="showTempTooltip(deleteTooltip)"
+         [attr.aria-label]="'Eliminar ' + element.nombreCompleto"
+         role="button"
+         tabindex="0"
+         (keydown.enter)="eliminarEmpleado(getIndex(i))"
+         (keydown.space)="eliminarEmpleado(getIndex(i)); $event.preventDefault()">
         <mat-icon color="warn">delete</mat-icon>
       </a>
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [class.demo-row-is-clicked]="isSelected(row)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+      (click)="selectRow(row)" 
+      [class.demo-row-is-clicked]="isSelected(row)"
+      [attr.aria-label]="'Empleado: ' + row.nombreCompleto"></tr>
+  
+  <!-- No data row -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" [attr.colspan]="displayedColumns.length" style="text-align: center; padding: 20px; color: #999;">
+      No se encontraron empleados. <a routerLink="/add" style="color: #3f51b5;">Agregar uno ahora</a>
+    </td>
+  </tr>
 </table>
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]"
                  showFirstLastButtons 

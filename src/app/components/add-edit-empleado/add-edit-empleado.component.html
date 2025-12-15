@@ -10,7 +10,10 @@
             <div class="col-lg-12">
                 <mat-form-field class="example-container" [style.fontSize.px]="16">
                     <mat-label>nombre completo</mat-label>
-                    <input matInput formControlName="nombreCompleto">
+                    <input matInput formControlName="nombreCompleto" 
+                           placeholder="Ej: Juan Pérez" 
+                           aria-label="Nombre completo del empleado" 
+                           autocomplete="name">
                 </mat-form-field>
                 <div *ngIf="myForm.get('nombreCompleto')?.hasError('required') && myForm.get('nombreCompleto')?.touched" style="margin-top: -20px;">
                     <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
@@ -22,7 +25,11 @@
             <div class="col-lg-12">
                 <mat-form-field class="example-container" [style.fontSize.px]="16">
                     <mat-label>correo electrónico</mat-label>
-                    <input matInput formControlName="correoElectronico">
+                    <input matInput formControlName="correoElectronico" 
+                           type="email" 
+                           placeholder="Ej: usuario@ejemplo.com" 
+                           aria-label="Correo electrónico del empleado" 
+                           autocomplete="email">
                 </mat-form-field> 
                 <div *ngIf="myForm.get('correoElectronico')?.hasError('required') && myForm.get('correoElectronico')?.touched" style="margin-top: -20px;">
                     <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
@@ -46,7 +53,11 @@
             <div class="col-lg-12">
                 <mat-form-field class="example-container" [style.fontSize.px]="16">
                     <mat-label>Teléfono</mat-label>
-                    <input matInput formControlName="telefono">
+                    <input matInput formControlName="telefono" 
+                           type="tel" 
+                           placeholder="Ej: 1234567890" 
+                           aria-label="Número de teléfono del empleado" 
+                           autocomplete="tel">
                 </mat-form-field>
                 <div *ngIf="myForm.get('telefono')?.hasError('required') && myForm.get('telefono')?.touched" style="margin-top: -20px;">
                     <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
@@ -75,14 +86,17 @@
                     <mat-radio-button value="Femenino" color="warn">Femenino</mat-radio-button>
                 </mat-radio-group>
                 <div *ngIf="myForm.get('sexo')?.hasError('required') && myForm.get('sexo')?.touched" style="margin-top: -20px;">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                    
+                    <br><span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                 </div>
             </div>
             <br>
             <div class="col-lg-12" >
                 <button class="btn-primary btn-lg" [disabled]="myForm.invalid" type="button" 
-                style="margin: 10px 10px 10px 0;" (click)="guardarEmpleado()" >Guardar</button>
-                <button class="btn-warning btn-lg" routerLink="/" type="button">Cancelar</button>
+                style="margin: 10px 10px 10px 0;" (click)="guardarEmpleado()" 
+                [attr.aria-label]="accion + ' empleado'"
+                [matTooltip]="myForm.invalid ? 'Complete todos los campos requeridos' : ''">Guardar</button>
+                <button class="btn-warning btn-lg" routerLink="/" type="button" aria-label="Cancelar y volver al listado">Cancelar</button>
             </div>
         </form>
     </div>

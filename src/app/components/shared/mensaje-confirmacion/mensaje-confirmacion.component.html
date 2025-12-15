@@ -1,8 +1,8 @@
-<h1 mat-dialog-title style="text-align:center ;">Mensaje de Confirmación</h1>
-<div mat-dialog-content style="text-align:center;">
-  <p>{{mensaje}}</p>
+<h1 mat-dialog-title style="text-align:center;" id="dialog-title">Mensaje de Confirmación</h1>
+<div mat-dialog-content style="text-align:center;" aria-describedby="dialog-description">
+  <p id="dialog-description">{{mensaje}}</p>
 </div>
-<div mat-dialog-actions style="margin-left: 50px; ;">
-  <button mat-button [mat-dialog-close]="false">Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+<div mat-dialog-actions style="margin-left: 50px;">
+  <button mat-button [mat-dialog-close]="false" aria-label="Cancelar acción">Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="primary" aria-label="Confirmar acción">Aceptar</button>
 </div>
